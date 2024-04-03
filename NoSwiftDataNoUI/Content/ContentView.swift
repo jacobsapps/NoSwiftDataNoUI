@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var viewModel: ContentViewModel = try! ContentViewModel()
+    @State private var viewModel: ContentViewModel = ContentViewModel()
     
     var body: some View {
         NavigationStack {

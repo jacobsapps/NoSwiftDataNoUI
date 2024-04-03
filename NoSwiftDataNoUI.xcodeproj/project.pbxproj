@@ -11,6 +11,7 @@
 		1608BEC92BBC8D550053F02C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1608BEC82BBC8D550053F02C /* User.swift */; };
 		1608BECC2BBC93500053F02C /* Surnames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1608BECB2BBC93500053F02C /* Surnames.swift */; };
 		1608BECE2BBC93570053F02C /* FirstNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1608BECD2BBC93570053F02C /* FirstNames.swift */; };
+		160B0C932BBD85E300C4C2E1 /* SwiftDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160B0C922BBD85E300C4C2E1 /* SwiftDatabase.swift */; };
 		161FA4612BBC964B00E6435B /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161FA4602BBC964B00E6435B /* ContentViewModel.swift */; };
 		161FA4652BBC9EF100E6435B /* UserDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161FA4642BBC9EF100E6435B /* UserDB.swift */; };
 		16C040EE2BBC5BB300B019CB /* NoSwiftDataNoUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C040ED2BBC5BB300B019CB /* NoSwiftDataNoUIApp.swift */; };
@@ -24,6 +25,7 @@
 		1608BEC82BBC8D550053F02C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1608BECB2BBC93500053F02C /* Surnames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Surnames.swift; sourceTree = "<group>"; };
 		1608BECD2BBC93570053F02C /* FirstNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstNames.swift; sourceTree = "<group>"; };
+		160B0C922BBD85E300C4C2E1 /* SwiftDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDatabase.swift; sourceTree = "<group>"; };
 		161FA4602BBC964B00E6435B /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		161FA4642BBC9EF100E6435B /* UserDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDB.swift; sourceTree = "<group>"; };
 		16C040EA2BBC5BB300B019CB /* NoSwiftDataNoUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoSwiftDataNoUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,6 +50,7 @@
 			isa = PBXGroup;
 			children = (
 				1608BEC62BBC8D4D0053F02C /* Database.swift */,
+				160B0C922BBD85E300C4C2E1 /* SwiftDatabase.swift */,
 				161FA4642BBC9EF100E6435B /* UserDB.swift */,
 				1608BEC82BBC8D550053F02C /* User.swift */,
 			);
@@ -125,6 +128,8 @@
 			dependencies = (
 			);
 			name = NoSwiftDataNoUI;
+			packageProductDependencies = (
+			);
 			productName = NoSwiftDataNoUI;
 			productReference = 16C040EA2BBC5BB300B019CB /* NoSwiftDataNoUI.app */;
 			productType = "com.apple.product-type.application";
@@ -153,6 +158,8 @@
 				Base,
 			);
 			mainGroup = 16C040E12BBC5BB300B019CB;
+			packageReferences = (
+			);
 			productRefGroup = 16C040EB2BBC5BB300B019CB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -179,6 +186,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				160B0C932BBD85E300C4C2E1 /* SwiftDatabase.swift in Sources */,
 				1608BECE2BBC93570053F02C /* FirstNames.swift in Sources */,
 				161FA4652BBC9EF100E6435B /* UserDB.swift in Sources */,
 				1608BEC72BBC8D4D0053F02C /* Database.swift in Sources */,

@@ -10,26 +10,17 @@ import Foundation
 @Observable
 final class ContentViewModel {
     
-    enum ContentError: Error {
-        case failedToInitializeDB
-    }
-    
     var users: [User] = []
-    private let database: UserDB
+    private let userDB: UserDB
     
-    init() throws {
-        do {
-            self.database = try UserDB()
-            fetchUsers()
-            
-        } catch {
-            throw ContentError.failedToInitializeDB
-        }
+    init() {
+        userDB = try! UserDB()
+        fetchUsers()
     }
     
     private func fetchUsers() {
         do {
-            users = try database.read(sortBy: 
+            users = try userDB.read(sortBy:
                                         SortDescriptor<User>(\.surname),
                                         SortDescriptor<User>(\.firstName)
             )
@@ -41,6 +32,6 @@ final class ContentViewModel {
     
     private func generateUsers() {
         let users = (0..<10_000).compactMap { _ in try? User() }
-        try? database.create(users)
+        try? userDB.create(users)
     }
 }
