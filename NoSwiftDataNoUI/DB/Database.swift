@@ -9,43 +9,51 @@ import Foundation
 import SwiftData
 
 protocol Database<T> {
-    associatedtype T = SwiftData.PersistentModel
+    associatedtype T = PersistentModel
     var container: ModelContainer { get }
-    @MainActor func create(item: T) throws
-    @MainActor func readItems(sortBy sortDescriptors: SortDescriptor<T>...) async throws -> [T]
-    @MainActor func update(item: T) throws
-    @MainActor func delete(item: T) throws
+    func create(_ item: T) throws
+    func create(_ items: [T]) throws
+    func read(sortBy sortDescriptors: SortDescriptor<T>...) async throws -> [T]
+    func update(_ item: T) throws
+    func delete(_ item: T) throws
 }
 
 extension Database {
     
-    @MainActor
-    func create(item: T) throws {
-        let context = container.mainContext
+    func create<T: PersistentModel>(_ items: [T]) throws {
+        let context = ModelContext(container)
+        for item in items {
+            context.insert(item)
+        }
+        try context.save()
+    }
+    
+    func create<T: PersistentModel>(_ item: T) throws {
+        let context = ModelContext(container)
         context.insert(item)
         try context.save()
     }
     
-    @MainActor
-    func readItems(sortBy sortDescriptors: SortDescriptor<T>...) throws -> [T] {
-        let context = container.mainContext
+    func read<T: PersistentModel>(sortBy sortDescriptors: SortDescriptor<T>...) throws -> [T] {
+        let context = ModelContext(container)
         let fetchDescriptor = FetchDescriptor<T>(
             sortBy: sortDescriptors
         )
         return try context.fetch(fetchDescriptor)
     }
     
-    @MainActor
-    func update(item: T) throws {
-        let context = container.mainContext
+    func update<T: PersistentModel>(_ item: T) throws {
+        let context = ModelContext(container)
         context.insert(item)
         try context.save()
     }
     
-    @MainActor
-    func delete(item: T) throws {
-        let context = container.mainContext
-        context.delete(item)
+    func delete<T: PersistentModel>(_ item: T) throws {
+        let context = ModelContext(container)
+        let idToDelete = item.persistentModelID
+        try context.delete(model: T.self, where: #Predicate { item in
+            item.persistentModelID == idToDelete
+        })
         try context.save()
     }
 }

@@ -9,16 +9,16 @@ import Foundation
 import SwiftData
 
 @Model
-final class User: Sendable {
+final class User {
     
     enum UserError: Error {
         case nameNotFound
     }
     
-    @Attribute(.unique) var id: UUID
-    var firstName: String
-    var surname: String
-    var age: Int
+    @Attribute(.unique) let id: UUID
+    let firstName: String
+    let surname: String
+    let age: Int
     
     init() throws {
         guard let firstName = firstNames.randomElement(),

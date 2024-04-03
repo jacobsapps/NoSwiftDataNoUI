@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@MainActor
 struct ContentView: View {
     
     @State private var viewModel: ContentViewModel = try! ContentViewModel()
@@ -19,7 +18,6 @@ struct ContentView: View {
                     UserCell(user: $0)
                 }
             }
-//            .padding()
             .navigationTitle("Users")
         }
     }
@@ -31,11 +29,13 @@ struct UserCell: View {
     
     var body: some View {
         HStack {
-            Text("\(user.firstName.localizedCapitalized) \(user.surname.capitalized)")
+            Text("\(user.firstName) \(user.surname)")
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-            Text("^[\(user.age) year](inflect: true)")
+            Text("^[\(user.age) \(String(localized: "year"))](inflect: true)")
                 .font(.caption)
+                .fontWeight(.medium)
+                .foregroundStyle(.secondary)
         }
     }
 }
