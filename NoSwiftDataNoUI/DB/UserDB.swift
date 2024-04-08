@@ -14,8 +14,10 @@ final class UserDB: SwiftDatabase {
     
     let container: ModelContainer
     
-    // Set the configuration to use an in-memory DB when unit testing
-    init() throws {
-        container = try ModelContainer(for: User.self)
+    /// Use an in-memory store to store non-persistent data when unit testing
+    ///
+    init(useInMemoryStore: Bool = false) throws {
+        let configuration = ModelConfiguration(for: User.self, isStoredInMemoryOnly: useInMemoryStore)
+        container = try ModelContainer(for: User.self, configurations: configuration)
     }
 }

@@ -15,23 +15,29 @@ final class ContentViewModel {
     
     init() {
         userDB = try! UserDB()
-        fetchUsers()
-    }
-    
-    private func fetchUsers() {
+        
         do {
-            users = try userDB.read(sortBy:
-                                        SortDescriptor<User>(\.surname),
-                                        SortDescriptor<User>(\.firstName)
-            )
+            try fetchUsers()
             
         } catch {
             print(error)
         }
     }
     
-    private func generateUsers() {
+    private func fetchUsers() throws {
+        users = try userDB.read(sortBy:
+                                    SortDescriptor<User>(\.surname),
+                                SortDescriptor<User>(\.firstName)
+        )
+        
+        if users.isEmpty {
+            try generateUsers()
+            try fetchUsers()
+        }
+    }
+    
+    private func generateUsers() throws {
         let users = (0..<10_000).compactMap { _ in try? User() }
-        try? userDB.create(users)
+        try userDB.create(users)
     }
 }
